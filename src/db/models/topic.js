@@ -5,12 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   Topic.associate = function(models) {
-    //associations
+    Topic.hasMany(models.Banner, {
+      foreignKey: "topicId",
+      as: "banners",
+    });
   };
-  Topic.hasMany(models.Banner, {
-    foreignKey: "topicId",
-    as: "banners",
-  });
+  
   
   return Topic;
 };

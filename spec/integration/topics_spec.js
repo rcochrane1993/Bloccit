@@ -6,7 +6,7 @@ const Topic = require("../../src/db/models").Topic;
 
 describe("routes : topics", () => {
   beforeEach((done) => {
-      this.topic;
+      this.Topic;
       sequelize.sync({force: true}).then((res) => {
 
         Topic.create({
@@ -14,7 +14,7 @@ describe("routes : topics", () => {
           description: "There is a lot of them"
         })
         .then((topic) => {
-          this.topic = topic;
+          this.Topic = topic;
           done();
         })
         .catch((err) => {
@@ -36,4 +36,16 @@ describe("routes : topics", () => {
       });
     });
   });
+  describe("GET /topics/new", () => {
+
+    it("should render a new topic form", (done) => {
+      request.get(`${base}new`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("New Topic");
+        done();
+      });
+    });
+
+  });
+
 });

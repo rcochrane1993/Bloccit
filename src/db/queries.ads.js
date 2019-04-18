@@ -5,11 +5,23 @@ module.exports = {
     getAllAds(callback){
         return Ad.all()
 
-        .then((adss) => {
+        .then((ads) => {
             callback(null, ads);
         })
         .catch((err) => {
             callback(err);
         })
+    },
+    addTopic(newAd, callback){
+      return Ad.create({
+        productName: newAd.productName,
+        description: newAd.description
+      })
+      .then((ad) => {
+        callback(null, ad);
+      })
+      .catch((err) => {
+        callback(err);
+      })
     }
 }

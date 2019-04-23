@@ -46,10 +46,12 @@ module.exports = {
       })
     },
     updateAd(id, updatedAd, callback){
+      console.log(id)
+      console.log(updatedAd)
       return Ad.findById(id)
       .then((ad) => {
-        if(!ad){
-          return callback("Ad not found");
+	      if(!ad){
+	        return callback("Ad not found");
         }
         ad.update(updatedAd, {
           fields: Object.keys(updatedAd)
@@ -60,7 +62,7 @@ module.exports = {
         .catch((err) => {
           callback(err);
         });
-      });
-    }
+     });
+  }
 
 }

@@ -55,8 +55,8 @@ module.exports = {
         });
     },
     update(req, res, next){
-
         adQueries.updateAd(req.params.id, req.body, (err, ad) => {
+            
             if(err || ad == null){
                 res.redirect(404, `/ads/${req.params.id}/edit`);
             } else {
